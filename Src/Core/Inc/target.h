@@ -22,6 +22,22 @@
 
 #endif
 
+
+#ifdef TARGET_YK044_V3
+
+#define TEMP_WARNING_DEG        70  /* warning temperrature (degree) */
+#define TEMP_WARNING_POWERINDEX 1   /* warning power (vpd_table.calVpd[TEMP_WARNING_POWERINDEX]) */
+#define TEMP_DANGER_DEG         90  /* danger temparature (degree) */
+#define TEMP_DANGER_POWERINDEX  0   /* danger power (vpd_table.calVpd[TEMP_DANGER_POWERINDEX]) */
+#define VTX_DEFAULT_POWER_INDEX     3    /* Default power level index (25mW) */
+#define VTX_TABLE_NEW_POWER_COUNT   4    /* vtx table power count */
+#define SA_NUM_POWER_LEVELS         VTX_TABLE_NEW_POWER_COUNT
+#define CAL_DBM_SIZE 2
+#define VREF_MAX_MV  2950           /* max vref voltage */
+
+#endif
+
+
 #ifndef TARGET_NOVTX
 typedef struct vpd_table_def {
     char magic[4];
