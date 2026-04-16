@@ -19,6 +19,8 @@
 #define SYNTH_REG_A_DEFAULT 0x0190
 #define POWER_AMP_ON 0x9f7e0        // 0b1001111101111110000
 
+#define	VCO_CONTROL 0x3FF
+
 #define MIN_FREQ 5000
 #define MAX_FREQ 5999
 
