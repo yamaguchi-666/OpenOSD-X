@@ -30,6 +30,8 @@ if("${TARGET}" STREQUAL "breakoutboard")
     add_compile_definitions(TARGET_BREAKOUTBOARD=1)
 elseif("${TARGET}" STREQUAL "novtx")
     add_compile_definitions(TARGET_NOVTX=1)
+elseif("${TARGET}" STREQUAL "yk044v3")
+    add_compile_definitions(TARGET_YK044_V3=1)
 endif()
 
 option(USE_RTT "Enable SEGGER RTT support" OFF)
