@@ -80,7 +80,8 @@ void initVtx(void)
 
     vtx_state = VTX_STATE_INIT;
     HAL_DAC_Start(&hdac1, DAC_CHANNEL_2);
-    rtc6705PowerAmpOff();
+    //rtc6705PowerAmpOff();
+    LL_DAC_ConvertData12RightAligned(DAC1, LL_DAC_CHANNEL_2, (uint32_t)0);
     initRtc6705();
 }
 
@@ -139,7 +140,8 @@ void setVtx_vpd(uint16_t freq, uint16_t vpd)
 
     if (vtx_freq != freq){
         vtx_freq = freq;
-        rtc6705PowerAmpOff();
+        //rtc6705PowerAmpOff();
+        LL_DAC_ConvertData12RightAligned(DAC1, LL_DAC_CHANNEL_2, (uint32_t)0);
         initRtc6705();
         vtx_state = VTX_STATE_INIT_RTC6705;
         renew = true;
@@ -278,7 +280,8 @@ void procVtx(void)
             break;
         case VTX_STATE_INIT_RTC6705:
             if (initRtc6705check()){
-                rtc6705PowerAmpOff();
+                //rtc6705PowerAmpOff();
+                LL_DAC_ConvertData12RightAligned(DAC1, LL_DAC_CHANNEL_2, (uint32_t)0);
                 rtc6705WriteFrequency(vtx_freq);
                 next_state_timer = now;
                 vtx_state = VTX_STATE_PLL_STABLE;
@@ -287,7 +290,7 @@ void procVtx(void)
             break;
         case VTX_STATE_PLL_STABLE:
             if ( (now - next_state_timer) >= PLL_STABLE_TIME_MS ){
-                rtc6705PowerAmpOn();
+                //rtc6705PowerAmpOn();
                 vref = setting()->vref_init;
                 LL_DAC_ConvertData12RightAligned(DAC1, LL_DAC_CHANNEL_2, (uint32_t)(0xfff*vref)/3300);
                 vtx_state = VTX_STATE_POWER_STABLE;
