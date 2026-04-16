@@ -40,7 +40,7 @@
 #define VTX_TABLE_NEW_BAND_COUNT    5//6
 #define CHANNEL_COUNT 8
 #define FREQ_TABLE_SIZE 40//48
-#define IS_FACTORY_BAND                 0
+#define IS_FACTORY_BAND                 1
 #define RACE_MODE_POWER                 14 // dBm
 
 /**
