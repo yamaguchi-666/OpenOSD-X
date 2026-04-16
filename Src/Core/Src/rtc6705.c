@@ -76,8 +76,11 @@ void rtc6705WriteFrequency(uint16_t newFreq)
     freq /= 40;
     uint32_t SYN_RF_N_REG = freq / 64;
     uint32_t SYN_RF_A_REG = freq % 64;
+    uint32_t EX_CAP = 70 - (newFreq - 5000) * 56 / 1000;
 
     rtc6705writeRegister(SynthesizerRegisterA, SYNTH_REG_A_DEFAULT);      // reset
     rtc6705writeRegister(SynthesizerRegisterB, SYN_RF_A_REG | (SYN_RF_N_REG << 7));
+    rtc6705writeRegister(RFVCODFCControlRegister, (VCO_CONTROL<<6) | EX_CAP);  // VCO fine tune
+    
 }
 
