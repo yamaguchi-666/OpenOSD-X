@@ -37,9 +37,9 @@
 
 // Values used in clearVtxTable()
 #define VTX_TABLE_SHOULD_BE_CLEARED 1
-#define VTX_TABLE_NEW_BAND_COUNT    6
+#define VTX_TABLE_NEW_BAND_COUNT    5//6
 #define CHANNEL_COUNT 8
-#define FREQ_TABLE_SIZE 48
+#define FREQ_TABLE_SIZE 40//48
 #define IS_FACTORY_BAND                 0
 #define RACE_MODE_POWER                 14 // dBm
 
@@ -97,6 +97,9 @@ typedef struct
     uint8_t powerLevels;
 } mspVtxConfigStruct;
 
+
+#ifdef TARGET_BREAKOUTBOARD
+
 const uint8_t channelFreqLabel[48] = {
     'B', 'A', 'N', 'D', '_', 'A', ' ', ' ', // A
     'B', 'A', 'N', 'D', '_', 'B', ' ', ' ', // B
@@ -116,6 +119,30 @@ uint16_t channelFreqTable[FREQ_TABLE_SIZE] = {
     5658, 5695, 5732, 5769, 5806, 5843, 5880, 5917, // R
     5333, 5373, 5413, 5453, 5493, 5533, 5573, 5613  // L
 };
+
+#endif
+
+#ifdef TARGET_YK044_V3
+
+const uint8_t channelFreqLabel[40] = {
+    'B', 'A', 'N', 'D', '_', 'A', 'X', ' ', // A
+    'B', 'A', 'N', 'D', '_', 'B', 'X', ' ', // B
+    'B', 'A', 'N', 'D', '_', 'E', 'X', ' ', // E
+    'F', 'A', 'T', 'S', 'H', 'A', 'R', 'K', // F
+    'R', 'A', 'C', 'E', '_', 'X', ' ', ' ', // R
+};
+
+const uint8_t bandLetter[5] = {'A', 'B', 'E', 'F', 'R'};
+
+uint16_t channelFreqTable[FREQ_TABLE_SIZE] = {
+    5675, 5680, 5825, 5805, 5785, 5765, 5745, 5725, // A
+    5733, 5752, 5771, 5790, 5809, 5690, 5700, 5710, // B
+    5705, 5685, 5715, 5720, 5730, 5735, 5750, 5755, // E
+    5740, 5766, 5780, 5800, 5820, 5773, 5775, 5794, // F
+    5795, 5695, 5732, 5769, 5806, 5797, 5802, 5823, // R
+};
+
+#endif
 
 uint8_t pitMode = 0;
 
